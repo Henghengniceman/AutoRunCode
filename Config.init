@@ -1,0 +1,26 @@
+------ Basic Information -----
+Start Date : 2018-04-08
+End Date : 2018-04-08
+GlueRange : 2250
+ZenithReferenceHeight : 6000
+AzimuthReferenceHeight : 10000
+FixPointReferenceHeight : 10000
+ShowDepolHeight : 10000
+Sa : 50
+R_zc : 0
+V_constant : 0.0335
+DepolSNR : 1
+DepoShowIndex :0
+Overlap : 1
+-------------Product--------------
+RCSProfiles : 1
+RCSPolar : 1
+BetaProfiles : 1
+BetaPolar : 1
+BetaData : 1
+DeltaProfiles : 1
+DeltaPolar : 1
+DeltaData : 1
+ZenithContourf : 1
+FixBetaContourf : 1
+FixDeltaContourf : 1

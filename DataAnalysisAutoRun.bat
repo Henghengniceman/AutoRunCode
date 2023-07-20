@@ -1,0 +1,1 @@
+C:\Users\ka1319\AppData\Local\anaconda3\Scripts\activate.bat && python Z:\henghengzhang\raymetrics\Product\202306Swabian\AutoRunCode\AutoAnalysis_cmd.py 
