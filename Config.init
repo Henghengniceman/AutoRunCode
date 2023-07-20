@@ -24,3 +24,5 @@ DeltaData : 1
 ZenithContourf : 1
 FixBetaContourf : 1
 FixDeltaContourf : 1
+------------MainDataPath--------------
+DataPath : //imkaaf-srv1/lidar/henghengzhang/raymetrics/Lidar_Data

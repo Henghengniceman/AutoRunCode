@@ -143,7 +143,10 @@ class WorkFlow(object):
             lines = f.readlines()
             for line in lines [3:]:
                 if len(line.split(':')) == 2:
-                    self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    try:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    except:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):line.split(':')[1].replace(' ','')})
             for line in lines[:3]:
                 if len(line.split(':')) == 2:
                     self.ConfigInfo.update({line.split(':')[0].replace(' ',''):datetime.strptime(line.split(':')[1].replace(' ','').replace('\n',' '), '%Y-%m-%d ')})    
@@ -156,6 +159,8 @@ class WorkFlow(object):
         
         self.ConfigInfo['StartDate'] = self.StartDate
         self.ConfigInfo['EndDate'] = self.EndDate
+        self.MainPath = self.ConfigInfo['DataPath']
+
         # pdb.set_trace()
     # @jit()
     def ZenithScanning(self):
@@ -411,7 +416,7 @@ class WorkFlow(object):
 # workflowI.AzimuthScanning()            
 
 if __name__ == '__main__':
-    MainPath = 'Z:/henghengzhang/raymetrics/Lidar_Data'
+    MainPath = ''
     parser = argparse.ArgumentParser(description="usage %prog [arguments]")   
     parser.add_argument("-i", "--initial_date",
           action="store",
@@ -446,4 +451,4 @@ if __name__ == '__main__':
     workflowI.MultiZenithScanning()
     workflowI.AzimuthScanning()
   
-    # workflowI.FixedPoint()
+    workflowI.FixedPoint()

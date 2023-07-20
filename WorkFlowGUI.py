@@ -268,7 +268,10 @@ class WorkFlowGUI(QWidget):
             self.lines = f.readlines()
             for line in self.lines [3:]:
                 if len(line.split(':')) == 2:
-                    self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    try:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    except:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):line.split(':')[1].replace(' ','')})
             for line in self.lines[:3]:
                 if len(line.split(':')) == 2:
                     self.ConfigInfo.update({line.split(':')[0].replace(' ',''):datetime.strptime(line.split(':')[1].replace(' ','').replace('\n',' '), '%Y-%m-%d ')})
@@ -388,8 +391,9 @@ class WorkFlowGUI(QWidget):
             loginfo = loginfo+line
         # date
         Date = self.ConfigInfo['StartDate'].strftime('%Y%m%d')
-        workflowI = workflow_GUI(MainPath,self.ConfigInfo,loginfo,Date)
-        # workflowI.ZenithScanning()
+     
+        workflowI = workflow_GUI(self.ConfigInfo['DataPath'],self.ConfigInfo,loginfo,Date)
+        workflowI.ZenithScanning()
         workflowI.AzimuthScanning()
         workflowI.FixedPoint()
         self.isEnsable(True)

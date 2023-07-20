@@ -1,1 +1,1 @@
-C:\Users\ka1319\AppData\Local\anaconda3\Scripts\activate.bat && python Z:\henghengzhang\raymetrics\Product\202306Swabian\AutoRunCode\AutoAnalysis_cmd.py 
+C:\Users\ka1319\AppData\Local\anaconda3\Scripts\activate.bat && python Z:\python_demo_code\AutoRunCode\AutoAnalysis_cmd.py -i 20180408 -e 20180408

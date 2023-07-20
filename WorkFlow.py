@@ -23,11 +23,6 @@ from tqdm import tqdm
 import pdb
 # from numba import jit
 
-
-
-
-
-
 def ShowZenithContourf(BetaSets,DeltaSets):
     Range = np.array(list(BetaSets.index))
     BetaDateTime = list(BetaSets.columns)
@@ -147,7 +142,11 @@ class WorkFlow(object):
             lines = f.readlines()
             for line in lines [3:]:
                 if len(line.split(':')) == 2:
-                    self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    try:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):float(line.split(':')[1])})
+                    except:
+                        self.ConfigInfo.update({line.split(':')[0].replace(' ',''):line.split(':')[1].replace(' ','')})
+
             for line in lines[:3]:
                 if len(line.split(':')) == 2:
                     self.ConfigInfo.update({line.split(':')[0].replace(' ',''):datetime.strptime(line.split(':')[1].replace(' ','').replace('\n',' '), '%Y-%m-%d ')})    
@@ -157,6 +156,8 @@ class WorkFlow(object):
             self.loginfo = self.loginfo+line
         # date 
         self.Date = self.ConfigInfo['StartDate'].strftime('%Y%m%d')
+        self.MainPath = self.ConfigInfo['DataPath']
+        # pdb.set_trace()
     # @jit()
     def ZenithScanning(self):
         print('\n-----ZenithScanning start-----\n')
@@ -331,7 +332,7 @@ class WorkFlow(object):
 # workflowI.AzimuthScanning()            
 
 def auto_analysis():    
-    MainPath = 'Z:/henghengzhang/raymetrics/Lidar_Data'
+    MainPath = ''
     ConfigFilePath = 'Config.init'
     workflowI = WorkFlow(MainPath)
     workflowI.ReadConfigFile(ConfigFilePath)
